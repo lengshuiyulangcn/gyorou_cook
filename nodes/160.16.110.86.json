@@ -1,0 +1,8 @@
+{
+  "run_list": [
+  "rbenv::system"
+],
+  "automatic": {
+    "ipaddress": "160.16.110.86"
+  }
+}
