@@ -33,6 +33,7 @@ end
 bash 'install_neobundle' do
   environment 'HOME' => '/home/' + node['gyorou']['user']
   cwd '/home/' + node['gyorou']['user']
+  user node['gyorou']['user']
   code <<-EOH
     curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
     sh ./install.sh 
@@ -40,4 +41,9 @@ bash 'install_neobundle' do
   not_if { ::Dir.exists?('/home/'+node['gyorou']['user']+'/.vim') }
 end
 
-
+#config vim and vim plugin
+template "/home/#{node['gyorou']['user']}/.vimrc" do
+  source '.vimrc'
+  owner node['gyorou']['user']
+  mode '0755'
+end
